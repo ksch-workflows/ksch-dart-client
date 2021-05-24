@@ -3,6 +3,20 @@ import 'package:json_annotation/json_annotation.dart';
 part 'patient_payload.g.dart';
 
 
+@JsonSerializable()
+class BasePatientPayload {
+
+  final String? name;
+
+  BasePatientPayload({
+    this.name,
+  });
+
+  factory BasePatientPayload.fromJson(Map<String, dynamic> json) => _$BasePatientPayloadFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BasePatientPayloadToJson(this);
+}
+
 class CreatePatientPayload {
 
 }
