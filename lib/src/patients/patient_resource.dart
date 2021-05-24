@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import '../client.dart';
 import '../resource.dart';
@@ -20,9 +21,9 @@ class PatientCollectionResource extends CollectionResource {
   @override
   CollectionResource? get parent => null;
 
-  Future<PatientResponsePayload> create() async {
-    var createPatientResponse = await api.post(absolutePath);
-    return PatientResponsePayload.fromJson(json.decode(createPatientResponse.body));
+  Future<PatientResponsePayload> create([CreatePatientPayload? patient]) async {
+    var response = await api.post(absolutePath, body: patient?.toJson());
+    return PatientResponsePayload.fromJson(json.decode(response.body));
   }
 
   Future<List<PatientResponsePayload>> list() async {

@@ -10,11 +10,14 @@ Execute the following command to generated the JSON serialization and de-seriali
 dart run build_runner build
 ```
 
-For details refer to:
+## References
 
 - https://pub.dev/packages/json_serializable
 - https://pub.dev/documentation/json_serializable/latest/
 - https://flutter.dev/docs/development/data-and-backend/json
+- https://stackoverflow.com/questions/62144987/flutter-dart-jsonserializable-with-inherited-class
+- https://stackoverflow.com/a/61138375/2339010
+- https://stackoverflow.com/questions/54849725/bad-state-cannot-set-the-body-fields-of-a-request-with-content-type-applicatio
 
 ## License
 

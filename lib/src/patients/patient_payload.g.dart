@@ -6,13 +6,26 @@ part of 'patient_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BasePatientPayload _$BasePatientPayloadFromJson(Map<String, dynamic> json) {
-  return BasePatientPayload(
+_BasePatientPayload _$_BasePatientPayloadFromJson(Map<String, dynamic> json) {
+  return _BasePatientPayload(
     name: json['name'] as String?,
   );
 }
 
-Map<String, dynamic> _$BasePatientPayloadToJson(BasePatientPayload instance) =>
+Map<String, dynamic> _$_BasePatientPayloadToJson(
+        _BasePatientPayload instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+    };
+
+CreatePatientPayload _$CreatePatientPayloadFromJson(Map<String, dynamic> json) {
+  return CreatePatientPayload(
+    name: json['name'] as String?,
+  );
+}
+
+Map<String, dynamic> _$CreatePatientPayloadToJson(
+        CreatePatientPayload instance) =>
     <String, dynamic>{
       'name': instance.name,
     };
@@ -22,12 +35,14 @@ PatientResponsePayload _$PatientResponsePayloadFromJson(
   return PatientResponsePayload(
     id: json['_id'] as String,
     links: Links.fromJson(json['_links'] as Map<String, dynamic>),
+    name: json['name'] as String?,
   );
 }
 
 Map<String, dynamic> _$PatientResponsePayloadToJson(
         PatientResponsePayload instance) =>
     <String, dynamic>{
+      'name': instance.name,
       '_id': instance.id,
       '_links': instance.links.toJson(),
     };
