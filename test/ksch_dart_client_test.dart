@@ -15,11 +15,12 @@ void main() {
     expect(patient.id, isNotEmpty);
   });
 
-  test('should get patients', () async {
+  test('should list patients', () async {
     await api.patients.create();
     var response = await api.patients.list();
 
     expect(response.patients.length, greaterThan(0));
+    expect(response.page.number, equals(0));
   });
 
   test('should get patient', () async {
