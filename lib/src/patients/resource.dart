@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../client.dart';
 import '../resource.dart';
 import 'address/address_resource.dart';
-import 'patient_payload.dart';
+import 'payload.dart';
 
 class PatientCollectionResource extends CollectionResource {
   final KschApi api;
@@ -22,8 +22,7 @@ class PatientCollectionResource extends CollectionResource {
 
   Future<Patient> create() async {
     var createPatientResponse = await api.post(absolutePath);
-    var patientId = json.decode(createPatientResponse.body)['id']!;
-    return Patient(id: patientId);
+    return Patient.fromJson(json.decode(createPatientResponse.body));
   }
 
   Future<List<Patient>> list() async {
@@ -31,8 +30,7 @@ class PatientCollectionResource extends CollectionResource {
     var listPatientsResponse = await api.get(absolutePath);
     var responseBody = json.decode(listPatientsResponse.body);
     for (var patientData in responseBody) {
-      var patientId = patientData['id'];
-      result.add(Patient(id: patientId));
+      result.add(Patient.fromJson(responseBody));
     }
     return result;
   }
@@ -56,7 +54,6 @@ class PatientResource extends IdentityResource {
   Future<Patient> get() async {
     var getPatientResponse = await api.get(absolutePath);
     var responseBody = json.decode(getPatientResponse.body);
-    var patientId = responseBody['id'];
-    return Patient(id: patientId);
+    return Patient.fromJson(responseBody);
   }
 }
