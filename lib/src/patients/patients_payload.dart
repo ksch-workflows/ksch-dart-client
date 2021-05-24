@@ -5,9 +5,8 @@ part 'patients_payload.g.dart';
 
 @JsonSerializable()
 class PatientsReponsePayload {
-
   @JsonKey(name: '_embedded')
-  final Embedded embedded;
+  final _Embedded embedded;
 
   final Page page;
 
@@ -26,15 +25,14 @@ class PatientsReponsePayload {
 }
 
 @JsonSerializable()
-class Embedded {
-
+class _Embedded {
   final List<PatientResponsePayload> patientModelList;
 
-  Embedded({required this.patientModelList});
+  _Embedded({required this.patientModelList});
 
-  factory Embedded.fromJson(Map<String, dynamic> json) => _$EmbeddedFromJson(json);
+  factory _Embedded.fromJson(Map<String, dynamic> json) => _$_EmbeddedFromJson(json);
 
-  Map<String, dynamic> toJson() => _$EmbeddedToJson(this);
+  Map<String, dynamic> toJson() => _$_EmbeddedToJson(this);
 }
 
 @JsonSerializable()

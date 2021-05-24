@@ -9,7 +9,7 @@ part of 'patients_payload.dart';
 PatientsReponsePayload _$PatientsReponsePayloadFromJson(
     Map<String, dynamic> json) {
   return PatientsReponsePayload(
-    embedded: Embedded.fromJson(json['_embedded'] as Map<String, dynamic>),
+    embedded: _Embedded.fromJson(json['_embedded'] as Map<String, dynamic>),
     page: Page.fromJson(json['page'] as Map<String, dynamic>),
   );
 }
@@ -21,15 +21,15 @@ Map<String, dynamic> _$PatientsReponsePayloadToJson(
       'page': instance.page.toJson(),
     };
 
-Embedded _$EmbeddedFromJson(Map<String, dynamic> json) {
-  return Embedded(
+_Embedded _$_EmbeddedFromJson(Map<String, dynamic> json) {
+  return _Embedded(
     patientModelList: (json['patientModelList'] as List<dynamic>)
         .map((e) => PatientResponsePayload.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
-Map<String, dynamic> _$EmbeddedToJson(Embedded instance) => <String, dynamic>{
+Map<String, dynamic> _$_EmbeddedToJson(_Embedded instance) => <String, dynamic>{
       'patientModelList':
           instance.patientModelList.map((e) => e.toJson()).toList(),
     };
