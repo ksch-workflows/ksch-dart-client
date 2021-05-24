@@ -10,6 +10,14 @@ Execute the following command to generated the JSON serialization and de-seriali
 dart run build_runner build
 ```
 
+## Test
+
+### Linting
+
+```
+dart analyze
+```
+
 ## References
 
 - https://pub.dev/packages/json_serializable
