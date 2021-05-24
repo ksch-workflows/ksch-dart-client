@@ -50,8 +50,6 @@ class _BasePatientPayload {
     required this.residentialAddress,
   });
 
-  factory _BasePatientPayload.fromJson(Map<String, dynamic> json) => _$_BasePatientPayloadFromJson(json);
-
   Map<String, dynamic> toJson() => _$_BasePatientPayloadToJson(this);
 }
 
