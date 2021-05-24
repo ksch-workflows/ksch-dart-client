@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import '../../client.dart';
 import '../../resource.dart';
-import '../patient_resource.dart';
-import 'address_payload.dart';
+import '../resource.dart';
+import 'payload.dart';
 
 class ResidentialAddressResource extends SubResource {
   final KschApi api;

@@ -1,5 +1,5 @@
 import 'package:ksch_dart_client/src/client.dart';
-import 'package:ksch_dart_client/src/patients/patient_payload.dart';
+import 'package:ksch_dart_client/src/patients/payload.dart';
 import 'package:test/test.dart';
 
 void main() {

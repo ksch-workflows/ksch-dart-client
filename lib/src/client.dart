@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import 'patients/patient_resource.dart';
+import 'patients/resource.dart';
 
 class KschApi {
   String baseUrl;
