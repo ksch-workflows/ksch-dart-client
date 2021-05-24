@@ -1,6 +1,8 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
-import 'patients/patient_resource.dart';
+import 'patients/resource.dart';
 
 class KschApi {
   String baseUrl;
@@ -12,21 +14,53 @@ class KschApi {
   }
 
   Future<http.Response> get(String resource) async {
-    // TODO: Handle not found error
     var absolutePath = '$baseUrl/api/$resource';
     var uri = Uri.tryParse(absolutePath);
     if (uri == null) {
       throw 'Could not parse URI from $absolutePath.';
     }
-    return http.get(uri);
+    var response = await http.get(uri);
+    _checkNoErrorResponse(response);
+    return response;
   }
 
-  Future<http.Response> post(String resource) async {
+  Future<http.Response> post(String resource, {Map<String, dynamic>? body}) async {
     var absolutePath = '$baseUrl/api/$resource';
     var uri = Uri.tryParse(absolutePath);
     if (uri == null) {
       throw 'Could not parse URI from $absolutePath.';
     }
-    return http.post(uri);
+    var headers = <String, String>{
+      if (body != null) 'Content-Type': 'application/json',
+    };
+    late http.Response response;
+    if (body != null) {
+      response = await http.post(uri, body: jsonEncode(body), headers: headers);
+    } else {
+      response = await http.post(uri, headers: headers);
+    }
+    _checkNoErrorResponse(response);
+    return response;
+  }
+}
+
+void _checkNoErrorResponse(http.Response response) {
+  if (response.statusCode >= 400) {
+    throw HttpException(
+      statusCode: response.statusCode,
+      responseBody: response.body,
+    );
+  }
+}
+
+class HttpException {
+  final int statusCode;
+  final String responseBody;
+
+  HttpException({required this.statusCode, required this.responseBody});
+
+  @override
+  String toString() {
+    return "Request failed with status code '$statusCode'. Details: $responseBody";
   }
 }

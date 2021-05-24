@@ -1,9 +1,8 @@
-import 'package:ksch_dart_client/ksch_dart_client.dart';
 import 'package:ksch_dart_client/src/client.dart';
+import 'package:ksch_dart_client/src/patients/payload.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   late KschApi api;
 
   setUp(() {
@@ -16,11 +15,12 @@ void main() {
     expect(patient.id, isNotEmpty);
   });
 
-  test('should get patients', () async {
+  test('should list patients', () async {
     await api.patients.create();
-    var patients = await api.patients.list();
+    var response = await api.patients.list();
 
-    expect(patients.length, greaterThan(0));
+    expect(response.patients.length, greaterThan(0));
+    expect(response.page.number, equals(0));
   });
 
   test('should get patient', () async {
@@ -32,10 +32,14 @@ void main() {
   });
 
   test('should get patient address', () async {
-    var createdPatientId = (await api.patients.create()).id;
+    var createdPatientId = (await api.patients.create(CreatePatientRequestPayload(
+      name: 'John Doe',
+      residentialAddress: 'Guesthouse',
+    )))
+        .id;
 
-    var result = await api.patients(createdPatientId).address.get();
+    var result = await api.patients(createdPatientId).residentialAddress.get();
 
-    expect(result.value, equals('Guesthouse'));
+    expect(result.residentialAddress, equals('Guesthouse'));
   });
 }

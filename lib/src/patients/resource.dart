@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import '../client.dart';
 import '../resource.dart';
-import 'address/address_resource.dart';
-import 'patient_payload.dart';
+import 'address/resource.dart';
+import 'payload.dart';
 
 class PatientCollectionResource extends CollectionResource {
   final KschApi api;
@@ -20,27 +20,20 @@ class PatientCollectionResource extends CollectionResource {
   @override
   CollectionResource? get parent => null;
 
-  Future<Patient> create() async {
-    var createPatientResponse = await api.post(absolutePath);
-    var patientId = json.decode(createPatientResponse.body)['id']!;
-    return Patient(id: patientId);
+  Future<PatientResponsePayload> create([CreatePatientRequestPayload? patient]) async {
+    var response = await api.post(absolutePath, body: patient?.toJson());
+    return PatientResponsePayload.fromJson(json.decode(response.body));
   }
 
-  Future<List<Patient>> list() async {
-    var result = <Patient>[];
+  Future<PatientsReponsePayload> list() async {
     var listPatientsResponse = await api.get(absolutePath);
-    var responseBody = json.decode(listPatientsResponse.body);
-    for (var patientData in responseBody) {
-      var patientId = patientData['id'];
-      result.add(Patient(id: patientId));
-    }
-    return result;
+    return PatientsReponsePayload.fromJson(json.decode(listPatientsResponse.body));
   }
 }
 
 class PatientResource extends IdentityResource {
   final KschApi api;
-  late final AddressResource address;
+  late final ResidentialAddressResource residentialAddress;
 
   PatientResource({
     required this.api,
@@ -50,13 +43,12 @@ class PatientResource extends IdentityResource {
           id: id,
           parent: parent,
         ) {
-    address = AddressResource(api: api, parent: this);
+    residentialAddress = ResidentialAddressResource(api: api, parent: this);
   }
 
-  Future<Patient> get() async {
+  Future<PatientResponsePayload> get() async {
     var getPatientResponse = await api.get(absolutePath);
     var responseBody = json.decode(getPatientResponse.body);
-    var patientId = responseBody['id'];
-    return Patient(id: patientId);
+    return PatientResponsePayload.fromJson(responseBody);
   }
 }

@@ -65,9 +65,6 @@ class SubSubResource extends CollectionResource {
   SubSubResource(this._parent);
 
   @override
-  String? get id => null;
-
-  @override
   CollectionResource? get parent => _parent;
 
   @override
