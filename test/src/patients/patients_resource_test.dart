@@ -15,8 +15,6 @@ void main() {
   test('Should create patient with payload', () async {
     var client = KschApi('http://localhost:8080');
 
-    CreatePatientRequestPayload();
-
     var patient = await client.patients.create(CreatePatientRequestPayload(name: 'John Doe'));
 
     expect(patient.id, isNotNull);
