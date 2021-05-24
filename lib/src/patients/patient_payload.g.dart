@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'payload.dart';
+part of 'patient_payload.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

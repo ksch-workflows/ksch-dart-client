@@ -1,4 +1,3 @@
-import 'package:ksch_dart_client/ksch_dart_client.dart';
 import 'package:ksch_dart_client/src/client.dart';
 import 'package:test/test.dart';
 

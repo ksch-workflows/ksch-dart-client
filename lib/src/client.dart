@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 
-import 'patients/resource.dart';
+import 'patients/patient_resource.dart';
+
 
 class KschApi {
   String baseUrl;

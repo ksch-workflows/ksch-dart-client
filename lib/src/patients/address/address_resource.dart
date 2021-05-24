@@ -1,6 +1,6 @@
 import '../../client.dart';
 import '../../resource.dart';
-import '../resource.dart';
+import '../patient_resource.dart';
 import 'address_payload.dart';
 
 class AddressResource extends SubResource {

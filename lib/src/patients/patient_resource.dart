@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../client.dart';
 import '../resource.dart';
 import 'address/address_resource.dart';
-import 'payload.dart';
+import 'patient_payload.dart';
 
 class PatientCollectionResource extends CollectionResource {
   final KschApi api;
