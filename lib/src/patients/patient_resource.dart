@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:ksch_dart_client/src/patients/patients_payload.dart';
 
 import '../client.dart';
 import '../resource.dart';
 import 'address/address_resource.dart';
 import 'patient_payload.dart';
+import 'patients_payload.dart';
 
 class PatientCollectionResource extends CollectionResource {
   final KschApi api;
