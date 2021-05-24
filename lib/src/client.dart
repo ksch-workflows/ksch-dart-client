@@ -14,14 +14,13 @@ class KschApi {
   }
 
   Future<http.Response> get(String resource) async {
-    // TODO: Handle not found error
     var absolutePath = '$baseUrl/api/$resource';
     var uri = Uri.tryParse(absolutePath);
     if (uri == null) {
       throw 'Could not parse URI from $absolutePath.';
     }
     var response = await http.get(uri);
-    _checkSuccessResponse(response);
+    _checkNoErrorResponse(response);
     return response;
   }
 
@@ -40,12 +39,12 @@ class KschApi {
     } else {
       response = await http.post(uri, headers: headers);
     }
-    _checkSuccessResponse(response);
+    _checkNoErrorResponse(response);
     return response;
   }
 }
 
-void _checkSuccessResponse(http.Response response) {
+void _checkNoErrorResponse(http.Response response) {
   if (response.statusCode >= 400) {
     throw HttpException(
       statusCode: response.statusCode,

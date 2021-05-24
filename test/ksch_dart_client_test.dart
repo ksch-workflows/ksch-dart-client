@@ -15,13 +15,12 @@ void main() {
     expect(patient.id, isNotEmpty);
   });
 
-  // TODO Fix test for collection resource
-  // test('should get patients', () async {
-  //   await api.patients.create();
-  //   var patients = await api.patients.list();
-  //
-  //   expect(patients.length, greaterThan(0));
-  // });
+  test('should get patients', () async {
+    await api.patients.create();
+    var patients = await api.patients.list();
+
+    expect(patients.embedded.patientModelList.length, greaterThan(0));
+  });
 
   test('should get patient', () async {
     var createdPatientId = (await api.patients.create()).id;

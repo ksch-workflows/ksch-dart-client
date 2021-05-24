@@ -55,6 +55,7 @@ class _BasePatientPayload {
   Map<String, dynamic> toJson() => _$_BasePatientPayloadToJson(this);
 }
 
+// TODO Move into a more abstract location
 @JsonSerializable()
 class Links {
   final Link self;

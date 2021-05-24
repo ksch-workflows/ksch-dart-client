@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:ksch_dart_client/src/patients/patients_payload.dart';
 
 import '../client.dart';
 import '../resource.dart';
@@ -26,14 +27,9 @@ class PatientCollectionResource extends CollectionResource {
     return PatientResponsePayload.fromJson(json.decode(response.body));
   }
 
-  Future<List<PatientResponsePayload>> list() async {
-    var result = <PatientResponsePayload>[];
+  Future<PatientsReponsePayload> list() async {
     var listPatientsResponse = await api.get(absolutePath);
-    var responseBody = json.decode(listPatientsResponse.body);
-    for (var patientData in responseBody) {
-      result.add(PatientResponsePayload.fromJson(responseBody));
-    }
-    return result;
+    return PatientsReponsePayload.fromJson(json.decode(listPatientsResponse.body));
   }
 }
 
