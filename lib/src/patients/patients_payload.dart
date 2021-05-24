@@ -11,6 +11,10 @@ class PatientsReponsePayload {
 
   final Page page;
 
+  List<PatientResponsePayload> get patients {
+    return embedded.patientModelList;
+  }
+
   PatientsReponsePayload({
     required this.embedded,
     required this.page,

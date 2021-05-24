@@ -17,9 +17,9 @@ void main() {
 
   test('should get patients', () async {
     await api.patients.create();
-    var patients = await api.patients.list();
+    var response = await api.patients.list();
 
-    expect(patients.embedded.patientModelList.length, greaterThan(0));
+    expect(response.patients.length, greaterThan(0));
   });
 
   test('should get patient', () async {
