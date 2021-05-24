@@ -3,10 +3,10 @@ import 'package:json_annotation/json_annotation.dart';
 part 'patient_payload.g.dart';
 
 @JsonSerializable()
-class PatientCreationPayload extends _BasePatientPayload {
-  PatientCreationPayload({String? name}) : super(name: name);
+class CreatePatientRequestPayload extends _BasePatientPayload {
+  CreatePatientRequestPayload({String? name}) : super(name: name);
 
-  factory PatientCreationPayload.fromJson(Map<String, dynamic> json) => _$CreatePatientPayloadFromJson(json);
+  factory CreatePatientRequestPayload.fromJson(Map<String, dynamic> json) => _$CreatePatientPayloadFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreatePatientPayloadToJson(this);
 }

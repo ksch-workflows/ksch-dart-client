@@ -21,7 +21,7 @@ class PatientCollectionResource extends CollectionResource {
   @override
   CollectionResource? get parent => null;
 
-  Future<PatientResponsePayload> create([PatientCreationPayload? patient]) async {
+  Future<PatientResponsePayload> create([CreatePatientRequestPayload? patient]) async {
     var response = await api.post(absolutePath, body: patient?.toJson());
     return PatientResponsePayload.fromJson(json.decode(response.body));
   }

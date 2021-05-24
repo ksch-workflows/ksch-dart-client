@@ -1,8 +1,8 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'patients/patient_resource.dart';
+import 'package:http/http.dart' as http;
 
+import 'patients/patient_resource.dart';
 
 class KschApi {
   String baseUrl;
@@ -30,11 +30,14 @@ class KschApi {
       throw 'Could not parse URI from $absolutePath.';
     }
     var headers = <String, String>{
-      if (body != null) 'Content-Type' : 'application/json'
+      if (body != null) 'Content-Type': 'application/json',
     };
     var response = await http.post(uri, body: jsonEncode(body), headers: headers);
     if (response.statusCode >= 400) {
-      throw HttpException(statusCode: response.statusCode, responseBody: response.body);
+      throw HttpException(
+        statusCode: response.statusCode,
+        responseBody: response.body,
+      );
     }
     return response;
   }
