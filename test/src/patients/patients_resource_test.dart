@@ -11,7 +11,7 @@ void main() {
     expect(patient.links.self.href, startsWith('http://localhost:8080/api/patients/'));
   });
 
-  test('Should create patient without payload', () async {
+  test('Should create patient with payload', () async {
     var client = KschApi('http://localhost:8080');
 
     var patient = await client.patients.create();

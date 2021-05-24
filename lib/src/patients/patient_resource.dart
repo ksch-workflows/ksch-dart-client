@@ -20,17 +20,17 @@ class PatientCollectionResource extends CollectionResource {
   @override
   CollectionResource? get parent => null;
 
-  Future<Patient> create() async {
+  Future<PatientResponsePayload> create() async {
     var createPatientResponse = await api.post(absolutePath);
-    return Patient.fromJson(json.decode(createPatientResponse.body));
+    return PatientResponsePayload.fromJson(json.decode(createPatientResponse.body));
   }
 
-  Future<List<Patient>> list() async {
-    var result = <Patient>[];
+  Future<List<PatientResponsePayload>> list() async {
+    var result = <PatientResponsePayload>[];
     var listPatientsResponse = await api.get(absolutePath);
     var responseBody = json.decode(listPatientsResponse.body);
     for (var patientData in responseBody) {
-      result.add(Patient.fromJson(responseBody));
+      result.add(PatientResponsePayload.fromJson(responseBody));
     }
     return result;
   }
@@ -51,9 +51,9 @@ class PatientResource extends IdentityResource {
     address = AddressResource(api: api, parent: this);
   }
 
-  Future<Patient> get() async {
+  Future<PatientResponsePayload> get() async {
     var getPatientResponse = await api.get(absolutePath);
     var responseBody = json.decode(getPatientResponse.body);
-    return Patient.fromJson(responseBody);
+    return PatientResponsePayload.fromJson(responseBody);
   }
 }

@@ -6,14 +6,14 @@ part of 'patient_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Patient _$PatientFromJson(Map<String, dynamic> json) {
-  return Patient(
+PatientResponsePayload _$PatientFromJson(Map<String, dynamic> json) {
+  return PatientResponsePayload(
     id: json['_id'] as String,
     links: Links.fromJson(json['_links'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$PatientToJson(Patient instance) => <String, dynamic>{
+Map<String, dynamic> _$PatientToJson(PatientResponsePayload instance) => <String, dynamic>{
       '_id': instance.id,
       '_links': instance.links.toJson(),
     };
