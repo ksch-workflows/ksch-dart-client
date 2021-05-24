@@ -6,28 +6,19 @@ part of 'patient_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_BasePatientPayload _$_BasePatientPayloadFromJson(Map<String, dynamic> json) {
-  return _BasePatientPayload(
-    name: json['name'] as String?,
-  );
-}
-
-Map<String, dynamic> _$_BasePatientPayloadToJson(
-        _BasePatientPayload instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-    };
-
-CreatePatientRequestPayload _$CreatePatientPayloadFromJson(Map<String, dynamic> json) {
+CreatePatientRequestPayload _$CreatePatientRequestPayloadFromJson(
+    Map<String, dynamic> json) {
   return CreatePatientRequestPayload(
     name: json['name'] as String?,
+    residentialAddress: json['residentialAddress'] as String?,
   );
 }
 
-Map<String, dynamic> _$CreatePatientPayloadToJson(
+Map<String, dynamic> _$CreatePatientRequestPayloadToJson(
         CreatePatientRequestPayload instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'residentialAddress': instance.residentialAddress,
     };
 
 PatientResponsePayload _$PatientResponsePayloadFromJson(
@@ -36,6 +27,7 @@ PatientResponsePayload _$PatientResponsePayloadFromJson(
     id: json['_id'] as String,
     links: Links.fromJson(json['_links'] as Map<String, dynamic>),
     name: json['name'] as String?,
+    residentialAddress: json['residentialAddress'] as String?,
   );
 }
 
@@ -43,8 +35,23 @@ Map<String, dynamic> _$PatientResponsePayloadToJson(
         PatientResponsePayload instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'residentialAddress': instance.residentialAddress,
       '_id': instance.id,
       '_links': instance.links.toJson(),
+    };
+
+_BasePatientPayload _$_BasePatientPayloadFromJson(Map<String, dynamic> json) {
+  return _BasePatientPayload(
+    name: json['name'] as String?,
+    residentialAddress: json['residentialAddress'] as String?,
+  );
+}
+
+Map<String, dynamic> _$_BasePatientPayloadToJson(
+        _BasePatientPayload instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'residentialAddress': instance.residentialAddress,
     };
 
 Links _$LinksFromJson(Map<String, dynamic> json) {

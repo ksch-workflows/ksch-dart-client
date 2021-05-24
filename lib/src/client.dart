@@ -20,7 +20,9 @@ class KschApi {
     if (uri == null) {
       throw 'Could not parse URI from $absolutePath.';
     }
-    return http.get(uri);
+    var response = await http.get(uri);
+    _checkSuccessResponse(response);
+    return response;
   }
 
   Future<http.Response> post(String resource, {Map<String, dynamic>? body}) async {
@@ -38,13 +40,17 @@ class KschApi {
     } else {
       response = await http.post(uri, headers: headers);
     }
-    if (response.statusCode >= 400) {
-      throw HttpException(
-        statusCode: response.statusCode,
-        responseBody: response.body,
-      );
-    }
+    _checkSuccessResponse(response);
     return response;
+  }
+}
+
+void _checkSuccessResponse(http.Response response) {
+  if (response.statusCode >= 400) {
+    throw HttpException(
+      statusCode: response.statusCode,
+      responseBody: response.body,
+    );
   }
 }
 

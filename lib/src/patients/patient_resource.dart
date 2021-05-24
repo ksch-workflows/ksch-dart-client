@@ -39,7 +39,7 @@ class PatientCollectionResource extends CollectionResource {
 
 class PatientResource extends IdentityResource {
   final KschApi api;
-  late final AddressResource address;
+  late final ResidentialAddressResource residentialAddress;
 
   PatientResource({
     required this.api,
@@ -49,7 +49,7 @@ class PatientResource extends IdentityResource {
           id: id,
           parent: parent,
         ) {
-    address = AddressResource(api: api, parent: this);
+    residentialAddress = ResidentialAddressResource(api: api, parent: this);
   }
 
   Future<PatientResponsePayload> get() async {
