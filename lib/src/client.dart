@@ -32,7 +32,12 @@ class KschApi {
     var headers = <String, String>{
       if (body != null) 'Content-Type': 'application/json',
     };
-    var response = await http.post(uri, body: jsonEncode(body), headers: headers);
+    late http.Response response;
+    if (body != null) {
+      response = await http.post(uri, body: jsonEncode(body), headers: headers);
+    } else {
+      response = await http.post(uri, headers: headers);
+    }
     if (response.statusCode >= 400) {
       throw HttpException(
         statusCode: response.statusCode,
