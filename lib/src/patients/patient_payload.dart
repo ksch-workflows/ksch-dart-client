@@ -1,26 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'patient_payload.g.dart';
 
 @JsonSerializable()
-class _BasePatientPayload {
-  final String? name;
+class PatientCreationPayload extends _BasePatientPayload {
+  PatientCreationPayload({String? name}) : super(name: name);
 
-  _BasePatientPayload({
-    this.name,
-  });
-
-  factory _BasePatientPayload.fromJson(Map<String, dynamic> json) => _$_BasePatientPayloadFromJson(json);
-
-  Map<String, dynamic> toJson() => _$_BasePatientPayloadToJson(this);
-}
-
-@JsonSerializable()
-class CreatePatientPayload extends _BasePatientPayload {
-  CreatePatientPayload({String? name}) : super(name: name);
-
-  factory CreatePatientPayload.fromJson(Map<String, dynamic> json) => _$CreatePatientPayloadFromJson(json);
+  factory PatientCreationPayload.fromJson(Map<String, dynamic> json) => _$CreatePatientPayloadFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreatePatientPayloadToJson(this);
 }
@@ -36,7 +22,7 @@ class PatientResponsePayload extends _BasePatientPayload {
   PatientResponsePayload({
     required this.id,
     required this.links,
-    String? name,
+    required String? name,
   }) : super(
           name: name,
         );
@@ -44,6 +30,19 @@ class PatientResponsePayload extends _BasePatientPayload {
   factory PatientResponsePayload.fromJson(Map<String, dynamic> json) => _$PatientResponsePayloadFromJson(json);
 
   Map<String, dynamic> toJson() => _$PatientResponsePayloadToJson(this);
+}
+
+@JsonSerializable()
+class _BasePatientPayload {
+  final String? name;
+
+  _BasePatientPayload({
+    required this.name,
+  });
+
+  factory _BasePatientPayload.fromJson(Map<String, dynamic> json) => _$_BasePatientPayloadFromJson(json);
+
+  Map<String, dynamic> toJson() => _$_BasePatientPayloadToJson(this);
 }
 
 @JsonSerializable()

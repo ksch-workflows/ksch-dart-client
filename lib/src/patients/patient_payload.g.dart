@@ -18,14 +18,14 @@ Map<String, dynamic> _$_BasePatientPayloadToJson(
       'name': instance.name,
     };
 
-CreatePatientPayload _$CreatePatientPayloadFromJson(Map<String, dynamic> json) {
-  return CreatePatientPayload(
+PatientCreationPayload _$CreatePatientPayloadFromJson(Map<String, dynamic> json) {
+  return PatientCreationPayload(
     name: json['name'] as String?,
   );
 }
 
 Map<String, dynamic> _$CreatePatientPayloadToJson(
-        CreatePatientPayload instance) =>
+        PatientCreationPayload instance) =>
     <String, dynamic>{
       'name': instance.name,
     };
