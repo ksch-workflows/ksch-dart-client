@@ -1,22 +1,54 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part './payload.g.dart';
+part 'payload.g.dart';
 
 @JsonSerializable()
 class PatientsReponsePayload {
+
+  // TODO If an page index bigger than then the available pages is returned, then the "_embedded" section is missing.
+  // TODO Also for empty search results the "_embedded" section is missing.
   @JsonKey(name: '_embedded')
   final _Embedded embedded;
 
+  @JsonKey(name: '_links')
+  final PageLinks links;
+
   final Page page;
+
+  PatientsReponsePayload({
+    required this.embedded,
+    required this.page,
+    required this.links,
+  });
 
   List<PatientResponsePayload> get patients {
     return embedded.patientModelList;
   }
 
-  PatientsReponsePayload({
-    required this.embedded,
-    required this.page,
-  });
+  bool get hasNextPage {
+    return links.next != null;
+  }
+
+  int? get nextPage {
+    var totalPages = page.totalPages;
+    var currentPage = page.number;
+
+    if (currentPage + 1 < totalPages) {
+      return currentPage + 1;
+    }
+  }
+
+  int get firstPage {
+    return 0;
+  }
+
+  int get lastPage {
+    if (page.totalPages > 0) {
+      return page.totalPages - 1;
+    } else {
+      return 0;
+    }
+  }
 
   factory PatientsReponsePayload.fromJson(Map<String, dynamic> json) =>
       _$PatientsReponsePayloadFromJson(json);
@@ -106,6 +138,36 @@ class _BasePatientPayload {
   });
 
   Map<String, dynamic> toJson() => _$_BasePatientPayloadToJson(this);
+}
+
+@JsonSerializable()
+class PageLinks {
+  final Link self;
+
+  /// The link to the first page.
+  final Link? first;
+
+  /// The link to the previous page.
+  final Link? prev;
+
+  /// The link to the next page.
+  final Link? next;
+
+  /// The link to the last page.
+  final Link? last;
+
+  PageLinks({
+    required this.self,
+    this.first,
+    this.prev,
+    this.next,
+    this.last,
+  });
+
+  factory PageLinks.fromJson(Map<String, dynamic> json) =>
+      _$PageLinksFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PageLinksToJson(this);
 }
 
 // TODO Move into a more abstract location

@@ -26,8 +26,9 @@ class PatientCollectionResource extends CollectionResource {
     return PatientResponsePayload.fromJson(json.decode(response.body));
   }
 
-  Future<PatientsReponsePayload> list() async {
-    var response = await api.get(absolutePath);
+  Future<PatientsReponsePayload> list({int page = 0}) async {
+    var requestUrl = '$absolutePath?page=$page';
+    var response = await api.get(requestUrl);
     return PatientsReponsePayload.fromJson(json.decode(response.body));
   }
 
@@ -41,9 +42,10 @@ class PatientCollectionResource extends CollectionResource {
   /// query string.
   ///
   /// Also see https://ksch-workflows.github.io/backend/#_search_patient
-  Future<PatientsReponsePayload> search(String query) async {
+  Future<PatientsReponsePayload> search(String query, {int page = 0}) async {
     var urlEncodedQuery = Uri.encodeComponent(query);
-    var response = await api.get('$absolutePath/search?q=$urlEncodedQuery');
+    var requestUrl = '$absolutePath/search?q=$urlEncodedQuery&page=$page';
+    var response = await api.get(requestUrl);
     return PatientsReponsePayload.fromJson(json.decode(response.body));
   }
 }

@@ -11,6 +11,7 @@ PatientsReponsePayload _$PatientsReponsePayloadFromJson(
   return PatientsReponsePayload(
     embedded: _Embedded.fromJson(json['_embedded'] as Map<String, dynamic>),
     page: Page.fromJson(json['page'] as Map<String, dynamic>),
+    links: PageLinks.fromJson(json['_links'] as Map<String, dynamic>),
   );
 }
 
@@ -18,6 +19,7 @@ Map<String, dynamic> _$PatientsReponsePayloadToJson(
         PatientsReponsePayload instance) =>
     <String, dynamic>{
       '_embedded': instance.embedded.toJson(),
+      '_links': instance.links.toJson(),
       'page': instance.page.toJson(),
     };
 
@@ -96,6 +98,32 @@ Map<String, dynamic> _$_BasePatientPayloadToJson(
     <String, dynamic>{
       'name': instance.name,
       'residentialAddress': instance.residentialAddress,
+    };
+
+PageLinks _$PageLinksFromJson(Map<String, dynamic> json) {
+  return PageLinks(
+    self: Link.fromJson(json['self'] as Map<String, dynamic>),
+    first: json['first'] == null
+        ? null
+        : Link.fromJson(json['first'] as Map<String, dynamic>),
+    prev: json['prev'] == null
+        ? null
+        : Link.fromJson(json['prev'] as Map<String, dynamic>),
+    next: json['next'] == null
+        ? null
+        : Link.fromJson(json['next'] as Map<String, dynamic>),
+    last: json['last'] == null
+        ? null
+        : Link.fromJson(json['last'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$PageLinksToJson(PageLinks instance) => <String, dynamic>{
+      'self': instance.self.toJson(),
+      'first': instance.first?.toJson(),
+      'prev': instance.prev?.toJson(),
+      'next': instance.next?.toJson(),
+      'last': instance.last?.toJson(),
     };
 
 Links _$LinksFromJson(Map<String, dynamic> json) {
