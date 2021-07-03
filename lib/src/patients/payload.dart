@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part './payload.g.dart';
+part 'payload.g.dart';
 
 @JsonSerializable()
 class PatientsReponsePayload {
@@ -106,6 +106,36 @@ class _BasePatientPayload {
   });
 
   Map<String, dynamic> toJson() => _$_BasePatientPayloadToJson(this);
+}
+
+@JsonSerializable()
+class PageLinks {
+  final Link self;
+
+  /// The link to the first page.
+  final Link? first;
+
+  /// The link to the previous page.
+  final Link? prev;
+
+  /// The link to the next page.
+  final Link? next;
+
+  /// The link to the last page.
+  final Link? last;
+
+  PageLinks({
+    required this.self,
+    this.first,
+    this.prev,
+    this.next,
+    this.last,
+  });
+
+  factory PageLinks.fromJson(Map<String, dynamic> json) =>
+      _$PageLinksFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PageLinksToJson(this);
 }
 
 // TODO Move into a more abstract location
