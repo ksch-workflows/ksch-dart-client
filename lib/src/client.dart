@@ -24,7 +24,10 @@ class KschApi {
     return response;
   }
 
-  Future<http.Response> post(String resource, {Map<String, dynamic>? body}) async {
+  Future<http.Response> post(
+    String resource, {
+    Map<String, dynamic>? body,
+  }) async {
     var absolutePath = '$baseUrl/api/$resource';
     var uri = Uri.tryParse(absolutePath);
     if (uri == null) {
@@ -61,6 +64,7 @@ class HttpException {
 
   @override
   String toString() {
-    return "Request failed with status code '$statusCode'. Details: $responseBody";
+    return "Request failed with status code '$statusCode'."
+        'Details: $responseBody';
   }
 }
