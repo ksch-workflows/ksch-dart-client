@@ -8,7 +8,7 @@ class PatientsReponsePayload {
   // TODO If an page index bigger than then the available pages is returned, then the "_embedded" section is missing.
   // TODO Also for empty search results the "_embedded" section is missing.
   @JsonKey(name: '_embedded')
-  final _Embedded embedded;
+  final _Embedded? embedded;
 
   @JsonKey(name: '_links')
   final PageLinks links;
@@ -22,7 +22,11 @@ class PatientsReponsePayload {
   });
 
   List<PatientResponsePayload> get patients {
-    return embedded.patientModelList;
+    if (embedded == null) {
+      return [];
+    } else {
+      return embedded!.patientModelList;
+    }
   }
 
   bool get hasNextPage {

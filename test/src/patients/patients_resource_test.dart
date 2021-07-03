@@ -70,6 +70,14 @@ void main() {
     expect(result.patients[0].name, equals(patientName));
   });
 
+  test('should handle empty search results', () async {
+    const patientName = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+
+    var result = await api.patients.search(patientName);
+
+    expect(result.patients, isEmpty);
+  });
+
   test('should provide access on paged resources', () async {
     const patientName = 'John Doe';
     await _createPatients(api, patientName, 30);
