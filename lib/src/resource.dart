@@ -3,10 +3,13 @@ import 'client.dart';
 abstract class Resource {
   KschApi get api;
 
+  /// The last element of the resource path, e.g. `foo` in the
+  /// resource `/bars/{id}/foo`
   String get path;
 
   Resource? get parent;
 
+  /// The full resource path, e.g. `/bars/{id}/foo`.
   String get absolutePath {
     var result = '';
 
