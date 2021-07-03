@@ -20,14 +20,31 @@ class PatientCollectionResource extends CollectionResource {
   @override
   CollectionResource? get parent => null;
 
-  Future<PatientResponsePayload> create([CreatePatientRequestPayload? patient]) async {
+  Future<PatientResponsePayload> create(
+      [CreatePatientRequestPayload? patient]) async {
     var response = await api.post(absolutePath, body: patient?.toJson());
     return PatientResponsePayload.fromJson(json.decode(response.body));
   }
 
   Future<PatientsReponsePayload> list() async {
-    var listPatientsResponse = await api.get(absolutePath);
-    return PatientsReponsePayload.fromJson(json.decode(listPatientsResponse.body));
+    var response = await api.get(absolutePath);
+    return PatientsReponsePayload.fromJson(json.decode(response.body));
+  }
+
+  /// Searches for patients which match the provided query string.
+  ///
+  /// - If the query string is a valid UUID, it is searched for a patient with
+  /// this patient ID.
+  /// - If the query string is a valid patient number, it is searched for a
+  /// patient with this patient number.
+  /// - Otherwise, it is searched for patients with a name matching with the
+  /// query string.
+  ///
+  /// Also see https://ksch-workflows.github.io/backend/#_search_patient
+  Future<PatientsReponsePayload> search(String query) async {
+    var urlEncodedQuery = Uri.encodeComponent(query);
+    var response = await api.get('$absolutePath/search?q=$urlEncodedQuery');
+    return PatientsReponsePayload.fromJson(json.decode(response.body));
   }
 }
 
