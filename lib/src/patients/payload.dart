@@ -5,8 +5,6 @@ part 'payload.g.dart';
 @JsonSerializable()
 class PatientsReponsePayload {
 
-  // TODO If an page index bigger than then the available pages is returned, then the "_embedded" section is missing.
-  // TODO Also for empty search results the "_embedded" section is missing.
   @JsonKey(name: '_embedded')
   final _Embedded? embedded;
 
