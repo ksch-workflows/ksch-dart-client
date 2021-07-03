@@ -69,6 +69,28 @@ void main() {
     expect(result.patients.length, greaterThanOrEqualTo(1));
     expect(result.patients[0].name, equals(patientName));
   });
+
+  test('should provide access on paged resources', () async {
+    const patientName = 'John Doe';
+    await _createPatients(api, patientName, 30);
+
+    // Request first page
+    var firstPage = await api.patients.list();
+    expect(firstPage.page.number, equals(0));
+
+    // Request second page
+    if (firstPage.hasNextPage) {
+      var secondPage = await api.patients.list(page: firstPage.nextPage!);
+      expect(secondPage.page.number, equals(1));
+    } else {
+      fail('Could not find next page');
+    }
+
+    // Request last page
+    var lastPage = await api.patients.list(page: firstPage.lastPage);
+    expect(lastPage.page.number, greaterThan(0));
+    expect(lastPage.page.number, equals(firstPage.page.totalPages - 1));
+  });
 }
 
 Future<PatientResponsePayload> _createPatient(
@@ -89,4 +111,18 @@ Future<PatientResponsePayload> _createPatientJohnDoe(
     residentialAddress: 'Guesthouse',
   );
   return await api.patients.create(payload);
+}
+
+Future<List<PatientResponsePayload>> _createPatients(
+    KschApi api, String name, int numberOfPatients) async {
+  var result = <PatientResponsePayload>[];
+
+  var payload = CreatePatientRequestPayload(
+    name: name,
+  );
+  for (var i = 0; i < numberOfPatients; i++) {
+    result.add(await api.patients.create(payload));
+  }
+
+  return result;
 }

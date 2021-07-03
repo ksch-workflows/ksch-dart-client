@@ -11,6 +11,7 @@ PatientsReponsePayload _$PatientsReponsePayloadFromJson(
   return PatientsReponsePayload(
     embedded: _Embedded.fromJson(json['_embedded'] as Map<String, dynamic>),
     page: Page.fromJson(json['page'] as Map<String, dynamic>),
+    links: PageLinks.fromJson(json['_links'] as Map<String, dynamic>),
   );
 }
 
@@ -18,6 +19,7 @@ Map<String, dynamic> _$PatientsReponsePayloadToJson(
         PatientsReponsePayload instance) =>
     <String, dynamic>{
       '_embedded': instance.embedded.toJson(),
+      '_links': instance.links.toJson(),
       'page': instance.page.toJson(),
     };
 
