@@ -4,13 +4,29 @@ This repository contains the source code of a [Dart](https://dart.dev/) package 
 
 ## Development
 
-Execute the following command to generated the JSON serialization and de-serialization code:
+Execute the following command to generate the JSON serialization and de-serialization code:
 
 ```
 dart run build_runner build
 ```
 
 ## Test
+
+### Integration tests
+
+When running the tests it is assumed that there is a local process of the [backend](https://github.com/ksch-workflows/backend)
+running on port 8080.
+
+```
+cd ../backend
+./gradlew bootRun
+```
+
+Then the tests can be excuted like this:
+
+```
+dart test
+```
 
 ### Linting
 
