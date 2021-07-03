@@ -18,7 +18,8 @@ class PatientsReponsePayload {
     required this.page,
   });
 
-  factory PatientsReponsePayload.fromJson(Map<String, dynamic> json) => _$PatientsReponsePayloadFromJson(json);
+  factory PatientsReponsePayload.fromJson(Map<String, dynamic> json) =>
+      _$PatientsReponsePayloadFromJson(json);
 
   Map<String, dynamic> toJson() => _$PatientsReponsePayloadToJson(this);
 }
@@ -29,7 +30,8 @@ class _Embedded {
 
   _Embedded({required this.patientModelList});
 
-  factory _Embedded.fromJson(Map<String, dynamic> json) => _$_EmbeddedFromJson(json);
+  factory _Embedded.fromJson(Map<String, dynamic> json) =>
+      _$_EmbeddedFromJson(json);
 
   Map<String, dynamic> toJson() => _$_EmbeddedToJson(this);
 }
@@ -63,7 +65,8 @@ class CreatePatientRequestPayload extends _BasePatientPayload {
           residentialAddress: residentialAddress,
         );
 
-  factory CreatePatientRequestPayload.fromJson(Map<String, dynamic> json) => _$CreatePatientRequestPayloadFromJson(json);
+  factory CreatePatientRequestPayload.fromJson(Map<String, dynamic> json) =>
+      _$CreatePatientRequestPayloadFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreatePatientRequestPayloadToJson(this);
 }
@@ -86,7 +89,8 @@ class PatientResponsePayload extends _BasePatientPayload {
           residentialAddress: residentialAddress,
         );
 
-  factory PatientResponsePayload.fromJson(Map<String, dynamic> json) => _$PatientResponsePayloadFromJson(json);
+  factory PatientResponsePayload.fromJson(Map<String, dynamic> json) =>
+      _$PatientResponsePayloadFromJson(json);
 
   Map<String, dynamic> toJson() => _$PatientResponsePayloadToJson(this);
 }

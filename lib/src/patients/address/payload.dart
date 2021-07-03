@@ -8,7 +8,8 @@ class AddressPayload {
 
   AddressPayload(this.residentialAddress);
 
-  factory AddressPayload.fromJson(Map<String, dynamic> json) => _$AddressPayloadFromJson(json);
+  factory AddressPayload.fromJson(Map<String, dynamic> json) =>
+      _$AddressPayloadFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddressPayloadToJson(this);
 }

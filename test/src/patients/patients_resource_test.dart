@@ -13,15 +13,25 @@ void main() {
     var patient = await api.patients.create();
 
     expect(patient.id, isNotNull);
-    expect(patient.links.self.href, startsWith('http://localhost:8080/api/patients/'));
+    expect(
+        patient.links.self.href,
+        startsWith(
+          'http://localhost:8080/api/patients/',
+        ));
   });
 
   test('Should create patient with payload', () async {
-    var patient = await api.patients.create(CreatePatientRequestPayload(name: 'John Doe'));
+    var patient = await api.patients.create(CreatePatientRequestPayload(
+      name: 'John Doe',
+    ));
 
     expect(patient.id, isNotNull);
     expect(patient.name, isNotNull);
-    expect(patient.links.self.href, startsWith('http://localhost:8080/api/patients/'));
+    expect(
+        patient.links.self.href,
+        startsWith(
+          'http://localhost:8080/api/patients/',
+        ));
   });
 
   test('should get patient', () async {
@@ -62,9 +72,9 @@ void main() {
 }
 
 Future<PatientResponsePayload> _createPatient(
-    KschApi api,
-    String name,
-    ) async {
+  KschApi api,
+  String name,
+) async {
   var payload = CreatePatientRequestPayload(
     name: name,
   );
@@ -72,8 +82,8 @@ Future<PatientResponsePayload> _createPatient(
 }
 
 Future<PatientResponsePayload> _createPatientJohnDoe(
-    KschApi api,
-    ) async {
+  KschApi api,
+) async {
   var payload = CreatePatientRequestPayload(
     name: 'John Doe',
     residentialAddress: 'Guesthouse',

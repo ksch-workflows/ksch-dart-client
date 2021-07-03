@@ -8,7 +8,10 @@ import 'payload.dart';
 class ResidentialAddressResource extends SubResource {
   final KschApi api;
 
-  ResidentialAddressResource({required this.api, required PatientResource parent}) : super(parent);
+  ResidentialAddressResource({
+    required this.api,
+    required PatientResource parent,
+  }) : super(parent);
 
   Future<AddressPayload> get() async {
     var getAddressResponse = await api.get(absolutePath);
