@@ -9,7 +9,9 @@ part of 'payload.dart';
 PatientsReponsePayload _$PatientsReponsePayloadFromJson(
     Map<String, dynamic> json) {
   return PatientsReponsePayload(
-    embedded: _Embedded.fromJson(json['_embedded'] as Map<String, dynamic>),
+    embedded: json['_embedded'] == null
+        ? null
+        : _Embedded.fromJson(json['_embedded'] as Map<String, dynamic>),
     page: Page.fromJson(json['page'] as Map<String, dynamic>),
     links: PageLinks.fromJson(json['_links'] as Map<String, dynamic>),
   );
@@ -18,7 +20,7 @@ PatientsReponsePayload _$PatientsReponsePayloadFromJson(
 Map<String, dynamic> _$PatientsReponsePayloadToJson(
         PatientsReponsePayload instance) =>
     <String, dynamic>{
-      '_embedded': instance.embedded.toJson(),
+      '_embedded': instance.embedded?.toJson(),
       '_links': instance.links.toJson(),
       'page': instance.page.toJson(),
     };
