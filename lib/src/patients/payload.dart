@@ -110,7 +110,7 @@ class PatientResponsePayload extends _BasePatientPayload {
   final String id;
 
   @JsonKey(name: '_links')
-  final Links links;
+  final _Links links;
 
   PatientResponsePayload({
     required this.id,
@@ -171,22 +171,21 @@ class PageLinks {
   Map<String, dynamic> toJson() => _$PageLinksToJson(this);
 }
 
-// TODO This class should be private
 @JsonSerializable()
-class Links {
+class _Links {
   final Link self;
 
   @JsonKey(name: 'start-visit')
   final Link? startVisit;
 
-  Links({
+  _Links({
     required this.self,
     this.startVisit,
   });
 
-  factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
+  factory _Links.fromJson(Map<String, dynamic> json) => _$_LinksFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LinksToJson(this);
+  Map<String, dynamic> toJson() => _$_LinksToJson(this);
 }
 
 // TODO Move into a more abstract location
