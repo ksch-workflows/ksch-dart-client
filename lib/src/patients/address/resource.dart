@@ -11,7 +11,7 @@ class ResidentialAddressResource extends SubResource {
   ResidentialAddressResource({
     required this.api,
     required PatientResource parent,
-  }) : super(parent);
+  }) : super(parent: parent);
 
   Future<AddressPayload> get() async {
     var getAddressResponse = await api.get(absolutePath);

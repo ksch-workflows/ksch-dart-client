@@ -5,13 +5,13 @@ import '../../resource.dart';
 import '../resource.dart';
 import 'payload.dart';
 
-class VisitsResource extends SubResource {
+class VisitsResource extends CollectionResource {
   final KschApi api;
 
   VisitsResource({
     required this.api,
     required PatientResource parent,
-  }) : super(parent);
+  }) : super(parent: parent);
 
   Future<VisitResponsePayload> startVisit(VisitType type) async {
     var payload = StartVisitPayload(type: type);
