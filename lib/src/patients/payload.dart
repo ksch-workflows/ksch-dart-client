@@ -1,9 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../hateoas.dart';
+import '../pagination.dart';
+
 part 'payload.g.dart';
 
 @JsonSerializable()
-class PatientsResponsePayload {
+class PatientsResponsePayload with PageNavigation {
   @JsonKey(name: '_embedded')
   final _Embedded? embedded;
 
@@ -26,31 +29,6 @@ class PatientsResponsePayload {
     }
   }
 
-  bool get hasNextPage {
-    return links.next != null;
-  }
-
-  int? get nextPage {
-    var totalPages = page.totalPages;
-    var currentPage = page.number;
-
-    if (currentPage + 1 < totalPages) {
-      return currentPage + 1;
-    }
-  }
-
-  int get firstPage {
-    return 0;
-  }
-
-  int get lastPage {
-    if (page.totalPages > 0) {
-      return page.totalPages - 1;
-    } else {
-      return 0;
-    }
-  }
-
   factory PatientsResponsePayload.fromJson(Map<String, dynamic> json) =>
       _$PatientsResponsePayloadFromJson(json);
 
@@ -67,25 +45,6 @@ class _Embedded {
       _$_EmbeddedFromJson(json);
 
   Map<String, dynamic> toJson() => _$_EmbeddedToJson(this);
-}
-
-@JsonSerializable()
-class Page {
-  final int size;
-  final int totalElements;
-  final int totalPages;
-  final int number;
-
-  Page({
-    required this.size,
-    required this.totalElements,
-    required this.totalPages,
-    required this.number,
-  });
-
-  factory Page.fromJson(Map<String, dynamic> json) => _$PageFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PageToJson(this);
 }
 
 @JsonSerializable()
@@ -142,36 +101,6 @@ class _BasePatientPayload {
 }
 
 @JsonSerializable()
-class PageLinks {
-  final Link self;
-
-  /// The link to the first page.
-  final Link? first;
-
-  /// The link to the previous page.
-  final Link? prev;
-
-  /// The link to the next page.
-  final Link? next;
-
-  /// The link to the last page.
-  final Link? last;
-
-  PageLinks({
-    required this.self,
-    this.first,
-    this.prev,
-    this.next,
-    this.last,
-  });
-
-  factory PageLinks.fromJson(Map<String, dynamic> json) =>
-      _$PageLinksFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PageLinksToJson(this);
-}
-
-@JsonSerializable()
 class _Links {
   final Link self;
 
@@ -186,16 +115,4 @@ class _Links {
   factory _Links.fromJson(Map<String, dynamic> json) => _$_LinksFromJson(json);
 
   Map<String, dynamic> toJson() => _$_LinksToJson(this);
-}
-
-// TODO Move into a more abstract location
-@JsonSerializable()
-class Link {
-  final String href;
-
-  Link({required this.href});
-
-  factory Link.fromJson(Map<String, dynamic> json) => _$LinkFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LinkToJson(this);
 }
