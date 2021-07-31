@@ -57,7 +57,7 @@ PatientResponsePayload _$PatientResponsePayloadFromJson(
     Map<String, dynamic> json) {
   return PatientResponsePayload(
     id: json['_id'] as String,
-    links: _Links.fromJson(json['_links'] as Map<String, dynamic>),
+    links: Links.fromJson(json['_links'] as Map<String, dynamic>),
     name: json['name'] as String?,
     residentialAddress: json['residentialAddress'] as String?,
   );
@@ -86,8 +86,8 @@ Map<String, dynamic> _$_BasePatientPayloadToJson(
       'residentialAddress': instance.residentialAddress,
     };
 
-_Links _$_LinksFromJson(Map<String, dynamic> json) {
-  return _Links(
+Links _$LinksFromJson(Map<String, dynamic> json) {
+  return Links(
     self: Link.fromJson(json['self'] as Map<String, dynamic>),
     startVisit: json['start-visit'] == null
         ? null
@@ -95,7 +95,7 @@ _Links _$_LinksFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_LinksToJson(_Links instance) => <String, dynamic>{
+Map<String, dynamic> _$LinksToJson(Links instance) => <String, dynamic>{
       'self': instance.self.toJson(),
       'start-visit': instance.startVisit?.toJson(),
     };

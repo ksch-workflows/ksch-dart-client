@@ -69,13 +69,13 @@ class PatientResponsePayload extends _BasePatientPayload {
   final String id;
 
   @JsonKey(name: '_links')
-  final _Links links;
+  final Links links;
 
   PatientResponsePayload({
     required this.id,
     required this.links,
-    required String? name,
-    required String? residentialAddress,
+    String? name,
+    String? residentialAddress,
   }) : super(
           name: name,
           residentialAddress: residentialAddress,
@@ -101,18 +101,18 @@ class _BasePatientPayload {
 }
 
 @JsonSerializable()
-class _Links {
+class Links {
   final Link self;
 
   @JsonKey(name: 'start-visit')
   final Link? startVisit;
 
-  _Links({
+  Links({
     required this.self,
     this.startVisit,
   });
 
-  factory _Links.fromJson(Map<String, dynamic> json) => _$_LinksFromJson(json);
+  factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
 
-  Map<String, dynamic> toJson() => _$_LinksToJson(this);
+  Map<String, dynamic> toJson() => _$LinksToJson(this);
 }
