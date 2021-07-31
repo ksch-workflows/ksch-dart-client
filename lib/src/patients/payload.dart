@@ -22,7 +22,7 @@ class PatientsReponsePayload {
     if (embedded == null) {
       return [];
     } else {
-      return embedded!.patientModelList;
+      return embedded!.patientResourceList;
     }
   }
 
@@ -59,9 +59,9 @@ class PatientsReponsePayload {
 
 @JsonSerializable()
 class _Embedded {
-  final List<PatientResponsePayload> patientModelList;
+  final List<PatientResponsePayload> patientResourceList;
 
-  _Embedded({required this.patientModelList});
+  _Embedded({required this.patientResourceList});
 
   factory _Embedded.fromJson(Map<String, dynamic> json) =>
       _$_EmbeddedFromJson(json);

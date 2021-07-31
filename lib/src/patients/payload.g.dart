@@ -27,15 +27,15 @@ Map<String, dynamic> _$PatientsReponsePayloadToJson(
 
 _Embedded _$_EmbeddedFromJson(Map<String, dynamic> json) {
   return _Embedded(
-    patientModelList: (json['patientModelList'] as List<dynamic>)
+    patientResourceList: (json['patientResourceList'] as List<dynamic>)
         .map((e) => PatientResponsePayload.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
 Map<String, dynamic> _$_EmbeddedToJson(_Embedded instance) => <String, dynamic>{
-      'patientModelList':
-          instance.patientModelList.map((e) => e.toJson()).toList(),
+      'patientResourceList':
+          instance.patientResourceList.map((e) => e.toJson()).toList(),
     };
 
 Page _$PageFromJson(Map<String, dynamic> json) {
