@@ -6,9 +6,9 @@ part of 'payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PatientsReponsePayload _$PatientsReponsePayloadFromJson(
+PatientsResponsePayload _$PatientsResponsePayloadFromJson(
     Map<String, dynamic> json) {
-  return PatientsReponsePayload(
+  return PatientsResponsePayload(
     embedded: json['_embedded'] == null
         ? null
         : _Embedded.fromJson(json['_embedded'] as Map<String, dynamic>),
@@ -17,8 +17,8 @@ PatientsReponsePayload _$PatientsReponsePayloadFromJson(
   );
 }
 
-Map<String, dynamic> _$PatientsReponsePayloadToJson(
-        PatientsReponsePayload instance) =>
+Map<String, dynamic> _$PatientsResponsePayloadToJson(
+        PatientsResponsePayload instance) =>
     <String, dynamic>{
       '_embedded': instance.embedded?.toJson(),
       '_links': instance.links.toJson(),
@@ -27,15 +27,15 @@ Map<String, dynamic> _$PatientsReponsePayloadToJson(
 
 _Embedded _$_EmbeddedFromJson(Map<String, dynamic> json) {
   return _Embedded(
-    patientModelList: (json['patientModelList'] as List<dynamic>)
+    patientResourceList: (json['patientResourceList'] as List<dynamic>)
         .map((e) => PatientResponsePayload.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
 Map<String, dynamic> _$_EmbeddedToJson(_Embedded instance) => <String, dynamic>{
-      'patientModelList':
-          instance.patientModelList.map((e) => e.toJson()).toList(),
+      'patientResourceList':
+          instance.patientResourceList.map((e) => e.toJson()).toList(),
     };
 
 Page _$PageFromJson(Map<String, dynamic> json) {
@@ -131,11 +131,15 @@ Map<String, dynamic> _$PageLinksToJson(PageLinks instance) => <String, dynamic>{
 Links _$LinksFromJson(Map<String, dynamic> json) {
   return Links(
     self: Link.fromJson(json['self'] as Map<String, dynamic>),
+    startVisit: json['start-visit'] == null
+        ? null
+        : Link.fromJson(json['start-visit'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$LinksToJson(Links instance) => <String, dynamic>{
       'self': instance.self.toJson(),
+      'start-visit': instance.startVisit?.toJson(),
     };
 
 Link _$LinkFromJson(Map<String, dynamic> json) {

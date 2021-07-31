@@ -3,8 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'payload.g.dart';
 
 @JsonSerializable()
-class PatientsReponsePayload {
-
+class PatientsResponsePayload {
   @JsonKey(name: '_embedded')
   final _Embedded? embedded;
 
@@ -13,7 +12,7 @@ class PatientsReponsePayload {
 
   final Page page;
 
-  PatientsReponsePayload({
+  PatientsResponsePayload({
     required this.embedded,
     required this.page,
     required this.links,
@@ -23,7 +22,7 @@ class PatientsReponsePayload {
     if (embedded == null) {
       return [];
     } else {
-      return embedded!.patientModelList;
+      return embedded!.patientResourceList;
     }
   }
 
@@ -52,17 +51,17 @@ class PatientsReponsePayload {
     }
   }
 
-  factory PatientsReponsePayload.fromJson(Map<String, dynamic> json) =>
-      _$PatientsReponsePayloadFromJson(json);
+  factory PatientsResponsePayload.fromJson(Map<String, dynamic> json) =>
+      _$PatientsResponsePayloadFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PatientsReponsePayloadToJson(this);
+  Map<String, dynamic> toJson() => _$PatientsResponsePayloadToJson(this);
 }
 
 @JsonSerializable()
 class _Embedded {
-  final List<PatientResponsePayload> patientModelList;
+  final List<PatientResponsePayload> patientResourceList;
 
-  _Embedded({required this.patientModelList});
+  _Embedded({required this.patientResourceList});
 
   factory _Embedded.fromJson(Map<String, dynamic> json) =>
       _$_EmbeddedFromJson(json);
@@ -172,18 +171,25 @@ class PageLinks {
   Map<String, dynamic> toJson() => _$PageLinksToJson(this);
 }
 
-// TODO Move into a more abstract location
+// TODO This class should be private
 @JsonSerializable()
 class Links {
   final Link self;
 
-  Links({required this.self});
+  @JsonKey(name: 'start-visit')
+  final Link? startVisit;
+
+  Links({
+    required this.self,
+    this.startVisit,
+  });
 
   factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
 
   Map<String, dynamic> toJson() => _$LinksToJson(this);
 }
 
+// TODO Move into a more abstract location
 @JsonSerializable()
 class Link {
   final String href;

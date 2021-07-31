@@ -4,6 +4,7 @@ import '../client.dart';
 import '../resource.dart';
 import 'address/resource.dart';
 import 'payload.dart';
+import 'visits/resource.dart';
 
 class PatientCollectionResource extends CollectionResource {
   final KschApi api;
@@ -26,10 +27,10 @@ class PatientCollectionResource extends CollectionResource {
     return PatientResponsePayload.fromJson(json.decode(response.body));
   }
 
-  Future<PatientsReponsePayload> list({int page = 0}) async {
+  Future<PatientsResponsePayload> list({int page = 0}) async {
     var requestUrl = '$absolutePath?page=$page';
     var response = await api.get(requestUrl);
-    return PatientsReponsePayload.fromJson(json.decode(response.body));
+    return PatientsResponsePayload.fromJson(json.decode(response.body));
   }
 
   /// Searches for patients which match the provided query string.
@@ -42,17 +43,18 @@ class PatientCollectionResource extends CollectionResource {
   /// query string.
   ///
   /// Also see https://ksch-workflows.github.io/backend/#_search_patient
-  Future<PatientsReponsePayload> search(String query, {int page = 0}) async {
+  Future<PatientsResponsePayload> search(String query, {int page = 0}) async {
     var urlEncodedQuery = Uri.encodeComponent(query);
     var requestUrl = '$absolutePath/search?q=$urlEncodedQuery&page=$page';
     var response = await api.get(requestUrl);
-    return PatientsReponsePayload.fromJson(json.decode(response.body));
+    return PatientsResponsePayload.fromJson(json.decode(response.body));
   }
 }
 
 class PatientResource extends IdentityResource {
   final KschApi api;
   late final ResidentialAddressResource residentialAddress;
+  late final VisitsResource visits;
 
   PatientResource({
     required this.api,
@@ -63,6 +65,7 @@ class PatientResource extends IdentityResource {
           parent: parent,
         ) {
     residentialAddress = ResidentialAddressResource(api: api, parent: this);
+    visits = VisitsResource(api: api, parent: this);
   }
 
   Future<PatientResponsePayload> get() async {
