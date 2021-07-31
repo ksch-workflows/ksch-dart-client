@@ -131,11 +131,15 @@ Map<String, dynamic> _$PageLinksToJson(PageLinks instance) => <String, dynamic>{
 Links _$LinksFromJson(Map<String, dynamic> json) {
   return Links(
     self: Link.fromJson(json['self'] as Map<String, dynamic>),
+    startVisit: json['start-visit'] == null
+        ? null
+        : Link.fromJson(json['start-visit'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$LinksToJson(Links instance) => <String, dynamic>{
       'self': instance.self.toJson(),
+      'start-visit': instance.startVisit?.toJson(),
     };
 
 Link _$LinkFromJson(Map<String, dynamic> json) {

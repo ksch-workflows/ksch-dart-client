@@ -4,7 +4,6 @@ part 'payload.g.dart';
 
 @JsonSerializable()
 class PatientsReponsePayload {
-
   @JsonKey(name: '_embedded')
   final _Embedded? embedded;
 
@@ -172,18 +171,25 @@ class PageLinks {
   Map<String, dynamic> toJson() => _$PageLinksToJson(this);
 }
 
-// TODO Move into a more abstract location
+// TODO This class should be private
 @JsonSerializable()
 class Links {
   final Link self;
 
-  Links({required this.self});
+  @JsonKey(name: 'start-visit')
+  final Link? startVisit;
+
+  Links({
+    required this.self,
+    this.startVisit,
+  });
 
   factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
 
   Map<String, dynamic> toJson() => _$LinksToJson(this);
 }
 
+// TODO Move into a more abstract location
 @JsonSerializable()
 class Link {
   final String href;
