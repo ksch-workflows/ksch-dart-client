@@ -22,7 +22,7 @@ cd ../backend
 ./gradlew bootRun
 ```
 
-Then the tests can be excuted like this:
+Then the tests can be executed like this:
 
 ```
 dart test

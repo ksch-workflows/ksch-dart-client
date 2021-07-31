@@ -6,9 +6,9 @@ part of 'payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PatientsReponsePayload _$PatientsReponsePayloadFromJson(
+PatientsResponsePayload _$PatientsResponsePayloadFromJson(
     Map<String, dynamic> json) {
-  return PatientsReponsePayload(
+  return PatientsResponsePayload(
     embedded: json['_embedded'] == null
         ? null
         : _Embedded.fromJson(json['_embedded'] as Map<String, dynamic>),
@@ -17,8 +17,8 @@ PatientsReponsePayload _$PatientsReponsePayloadFromJson(
   );
 }
 
-Map<String, dynamic> _$PatientsReponsePayloadToJson(
-        PatientsReponsePayload instance) =>
+Map<String, dynamic> _$PatientsResponsePayloadToJson(
+        PatientsResponsePayload instance) =>
     <String, dynamic>{
       '_embedded': instance.embedded?.toJson(),
       '_links': instance.links.toJson(),

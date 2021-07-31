@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'payload.g.dart';
 
 @JsonSerializable()
-class PatientsReponsePayload {
+class PatientsResponsePayload {
   @JsonKey(name: '_embedded')
   final _Embedded? embedded;
 
@@ -12,7 +12,7 @@ class PatientsReponsePayload {
 
   final Page page;
 
-  PatientsReponsePayload({
+  PatientsResponsePayload({
     required this.embedded,
     required this.page,
     required this.links,
@@ -51,10 +51,10 @@ class PatientsReponsePayload {
     }
   }
 
-  factory PatientsReponsePayload.fromJson(Map<String, dynamic> json) =>
-      _$PatientsReponsePayloadFromJson(json);
+  factory PatientsResponsePayload.fromJson(Map<String, dynamic> json) =>
+      _$PatientsResponsePayloadFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PatientsReponsePayloadToJson(this);
+  Map<String, dynamic> toJson() => _$PatientsResponsePayloadToJson(this);
 }
 
 @JsonSerializable()
