@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:ksch_dart_client/src/patients/visits/resource.dart';
+
 import '../client.dart';
 import '../resource.dart';
 import 'address/resource.dart';
@@ -53,6 +55,7 @@ class PatientCollectionResource extends CollectionResource {
 class PatientResource extends IdentityResource {
   final KschApi api;
   late final ResidentialAddressResource residentialAddress;
+  late final VisitsResource visits;
 
   PatientResource({
     required this.api,
@@ -63,6 +66,7 @@ class PatientResource extends IdentityResource {
           parent: parent,
         ) {
     residentialAddress = ResidentialAddressResource(api: api, parent: this);
+    visits = VisitsResource(api: api, parent: this);
   }
 
   Future<PatientResponsePayload> get() async {

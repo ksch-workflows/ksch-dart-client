@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part './payload.g.dart';
+part 'payload.g.dart';
 
 @JsonSerializable()
 class AddressPayload {

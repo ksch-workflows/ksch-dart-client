@@ -1,6 +1,7 @@
 import 'client.dart';
 
 abstract class Resource {
+
   KschApi get api;
 
   /// The last element of the resource path, e.g. `foo` in the
