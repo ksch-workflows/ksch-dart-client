@@ -13,7 +13,7 @@ class VisitsResource extends SubResource {
     required PatientResource parent,
   }) : super(parent);
 
-  Future<VisitResponsePayload> startVisit(String type) async {
+  Future<VisitResponsePayload> startVisit(VisitType type) async {
     var payload = StartVisitPayload(type: type);
     var response = await api.post(absolutePath, body: payload.toJson());
     return VisitResponsePayload.fromJson(jsonDecode(response.body));

@@ -14,11 +14,12 @@ void main() {
 
     late VisitResponsePayload visit;
     if (patient.links.startVisit != null) {
-      visit = await api.patients(patient.id).visits.startVisit('OPD');
+      visit = await api.patients(patient.id).visits.startVisit(VisitType.OPD);
     } else {
       fail('Could not find start visit link');
     }
 
     expect(visit.id, isNotNull);
+    expect(visit.type, equals(VisitType.OPD));
   });
 }

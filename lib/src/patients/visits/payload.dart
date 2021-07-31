@@ -2,11 +2,16 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'payload.g.dart';
 
+enum VisitType {
+  OPD,
+  IPD,
+  PHYSIO_THERAPY,
+}
+
 @JsonSerializable()
 class StartVisitPayload {
 
-  // TODO Use enum for visit type
-  final String type;
+  final VisitType type;
 
   StartVisitPayload({required this.type});
 
@@ -21,8 +26,7 @@ class VisitResponsePayload {
   @JsonKey(name: '_id')
   final String id;
 
-  // TODO parse enum
-  final String type;
+  final VisitType type;
 
   final String opdNumber;
 
