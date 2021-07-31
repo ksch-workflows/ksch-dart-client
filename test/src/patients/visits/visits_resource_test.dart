@@ -21,5 +21,6 @@ void main() {
 
     expect(visit.id, isNotNull);
     expect(visit.type, equals(VisitType.OPD));
+    expect(visit.timeStart.difference(DateTime.now()).inMinutes, equals(0));
   });
 }

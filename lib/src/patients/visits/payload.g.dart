@@ -45,6 +45,8 @@ K _$enumDecode<K, V>(
 
 const _$VisitTypeEnumMap = {
   VisitType.OPD: 'OPD',
+  VisitType.IPD: 'IPD',
+  VisitType.PHYSIO_THERAPY: 'PHYSIO_THERAPY',
 };
 
 VisitResponsePayload _$VisitResponsePayloadFromJson(Map<String, dynamic> json) {
@@ -52,7 +54,7 @@ VisitResponsePayload _$VisitResponsePayloadFromJson(Map<String, dynamic> json) {
     id: json['_id'] as String,
     type: _$enumDecode(_$VisitTypeEnumMap, json['type']),
     opdNumber: json['opdNumber'] as String,
-    timeStart: json['timeStart'] as String,
+    timeStart: DateTime.parse(json['timeStart'] as String),
   );
 }
 
@@ -62,5 +64,5 @@ Map<String, dynamic> _$VisitResponsePayloadToJson(
       '_id': instance.id,
       'type': _$VisitTypeEnumMap[instance.type],
       'opdNumber': instance.opdNumber,
-      'timeStart': instance.timeStart,
+      'timeStart': instance.timeStart.toIso8601String(),
     };

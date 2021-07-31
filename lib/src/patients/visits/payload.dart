@@ -30,8 +30,7 @@ class VisitResponsePayload {
 
   final String opdNumber;
 
-  // TODO parse date
-  final String timeStart;
+  final DateTime timeStart;
 
   VisitResponsePayload({
     required this.id,
