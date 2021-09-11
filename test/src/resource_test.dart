@@ -31,7 +31,6 @@ void main() {
 }
 
 class RootResource extends CollectionResource {
-
   @override
   CollectionResource? get parent => null;
 
@@ -43,7 +42,6 @@ class RootResource extends CollectionResource {
 }
 
 class SubResource extends CollectionResource {
-
   final CollectionResource _parent;
 
   SubResource(this._parent);
@@ -59,7 +57,6 @@ class SubResource extends CollectionResource {
 }
 
 class SubSubResource extends CollectionResource {
-
   final CollectionResource _parent;
 
   SubSubResource(this._parent);

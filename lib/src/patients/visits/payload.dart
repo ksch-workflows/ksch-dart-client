@@ -10,7 +10,6 @@ enum VisitType {
 
 @JsonSerializable()
 class StartVisitPayload {
-
   final VisitType type;
 
   StartVisitPayload({required this.type});

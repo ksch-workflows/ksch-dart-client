@@ -31,6 +31,7 @@ dart test
 ### Linting
 
 ```
+dart format .
 dart analyze
 ```
 
