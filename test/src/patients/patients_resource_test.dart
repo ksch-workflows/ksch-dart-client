@@ -1,5 +1,4 @@
 import 'package:ksch_dart_client/core.dart';
-import 'package:ksch_dart_client/resources.dart';
 import 'package:test/test.dart';
 
 void main() {
