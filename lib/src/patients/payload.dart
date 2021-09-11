@@ -53,10 +53,12 @@ class CreatePatientRequestPayload extends _BasePatientPayload {
     required String? name,
     required String? residentialAddress,
     required String? gender,
+    required String? patientCategory,
   }) : super(
     name: name,
     residentialAddress: residentialAddress,
     gender: gender,
+    patientCategory: patientCategory,
   );
 
   factory CreatePatientRequestPayload.fromJson(Map<String, dynamic> json) =>
@@ -79,10 +81,12 @@ class PatientResponsePayload extends _BasePatientPayload {
     required String? name,
     required String? residentialAddress,
     required String? gender,
+    required String? patientCategory,
   }) : super(
     name: name,
     residentialAddress: residentialAddress,
     gender: gender,
+    patientCategory: patientCategory,
   );
 
   factory PatientResponsePayload.fromJson(Map<String, dynamic> json) =>
@@ -96,11 +100,13 @@ class _BasePatientPayload {
   final String? name;
   final String? residentialAddress;
   final String? gender;
+  final String? patientCategory;
 
   _BasePatientPayload({
     required this.name,
     required this.residentialAddress,
     required this.gender,
+    required this.patientCategory,
   });
 
   Map<String, dynamic> toJson() => _$_BasePatientPayloadToJson(this);
