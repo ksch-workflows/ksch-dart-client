@@ -6,6 +6,7 @@ import 'address/resource.dart';
 import 'payload.dart';
 import 'visits/resource.dart';
 
+/// This is the patient collection resource
 class PatientCollectionResource extends CollectionResource {
   final KschApi api;
 
