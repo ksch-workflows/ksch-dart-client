@@ -76,9 +76,9 @@ class PatientResponsePayload extends _BasePatientPayload {
   PatientResponsePayload({
     required this.id,
     required this.links,
-    String? name,
-    String? residentialAddress,
-    String? gender,
+    required String? name,
+    required String? residentialAddress,
+    required String? gender,
   }) : super(
     name: name,
     residentialAddress: residentialAddress,
