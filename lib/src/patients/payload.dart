@@ -50,12 +50,16 @@ class _Embedded {
 @JsonSerializable()
 class CreatePatientRequestPayload extends _BasePatientPayload {
   CreatePatientRequestPayload({
-    String? name,
-    String? residentialAddress,
+    required String? name,
+    required String? residentialAddress,
+    required String? gender,
+    required String? patientCategory,
   }) : super(
-          name: name,
-          residentialAddress: residentialAddress,
-        );
+    name: name,
+    residentialAddress: residentialAddress,
+    gender: gender,
+    patientCategory: patientCategory,
+  );
 
   factory CreatePatientRequestPayload.fromJson(Map<String, dynamic> json) =>
       _$CreatePatientRequestPayloadFromJson(json);
@@ -74,12 +78,16 @@ class PatientResponsePayload extends _BasePatientPayload {
   PatientResponsePayload({
     required this.id,
     required this.links,
-    String? name,
-    String? residentialAddress,
+    required String? name,
+    required String? residentialAddress,
+    required String? gender,
+    required String? patientCategory,
   }) : super(
-          name: name,
-          residentialAddress: residentialAddress,
-        );
+    name: name,
+    residentialAddress: residentialAddress,
+    gender: gender,
+    patientCategory: patientCategory,
+  );
 
   factory PatientResponsePayload.fromJson(Map<String, dynamic> json) =>
       _$PatientResponsePayloadFromJson(json);
@@ -91,10 +99,14 @@ class PatientResponsePayload extends _BasePatientPayload {
 class _BasePatientPayload {
   final String? name;
   final String? residentialAddress;
+  final String? gender;
+  final String? patientCategory;
 
   _BasePatientPayload({
     required this.name,
     required this.residentialAddress,
+    required this.gender,
+    required this.patientCategory,
   });
 
   Map<String, dynamic> toJson() => _$_BasePatientPayloadToJson(this);

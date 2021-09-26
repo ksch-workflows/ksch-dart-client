@@ -43,6 +43,8 @@ CreatePatientRequestPayload _$CreatePatientRequestPayloadFromJson(
   return CreatePatientRequestPayload(
     name: json['name'] as String?,
     residentialAddress: json['residentialAddress'] as String?,
+    gender: json['gender'] as String?,
+    patientCategory: json['patientCategory'] as String?,
   );
 }
 
@@ -51,6 +53,8 @@ Map<String, dynamic> _$CreatePatientRequestPayloadToJson(
     <String, dynamic>{
       'name': instance.name,
       'residentialAddress': instance.residentialAddress,
+      'gender': instance.gender,
+      'patientCategory': instance.patientCategory,
     };
 
 PatientResponsePayload _$PatientResponsePayloadFromJson(
@@ -60,6 +64,8 @@ PatientResponsePayload _$PatientResponsePayloadFromJson(
     links: Links.fromJson(json['_links'] as Map<String, dynamic>),
     name: json['name'] as String?,
     residentialAddress: json['residentialAddress'] as String?,
+    gender: json['gender'] as String?,
+    patientCategory: json['patientCategory'] as String?,
   );
 }
 
@@ -68,6 +74,8 @@ Map<String, dynamic> _$PatientResponsePayloadToJson(
     <String, dynamic>{
       'name': instance.name,
       'residentialAddress': instance.residentialAddress,
+      'gender': instance.gender,
+      'patientCategory': instance.patientCategory,
       '_id': instance.id,
       '_links': instance.links.toJson(),
     };
@@ -76,6 +84,8 @@ _BasePatientPayload _$_BasePatientPayloadFromJson(Map<String, dynamic> json) {
   return _BasePatientPayload(
     name: json['name'] as String?,
     residentialAddress: json['residentialAddress'] as String?,
+    gender: json['gender'] as String?,
+    patientCategory: json['patientCategory'] as String?,
   );
 }
 
@@ -84,6 +94,8 @@ Map<String, dynamic> _$_BasePatientPayloadToJson(
     <String, dynamic>{
       'name': instance.name,
       'residentialAddress': instance.residentialAddress,
+      'gender': instance.gender,
+      'patientCategory': instance.patientCategory,
     };
 
 Links _$LinksFromJson(Map<String, dynamic> json) {

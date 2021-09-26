@@ -22,10 +22,14 @@ void main() {
   test('Should create patient with payload', () async {
     var patient = await api.patients.create(CreatePatientRequestPayload(
       name: 'John Doe',
+      gender: 'MALE',
+      residentialAddress: 'Guesthouse',
+      patientCategory: 'OPD',
     ));
 
     expect(patient.id, isNotNull);
-    expect(patient.name, isNotNull);
+    expect(patient.name, equals('John Doe'));
+    expect(patient.gender, equals('MALE'));
     expect(
         patient.links.self.href,
         startsWith(
@@ -106,6 +110,9 @@ Future<PatientResponsePayload> _createPatient(
 ) async {
   var payload = CreatePatientRequestPayload(
     name: name,
+    residentialAddress: 'Guesthouse',
+    gender: 'MALE',
+    patientCategory: 'OPD',
   );
   return await api.patients.create(payload);
 }
@@ -116,6 +123,8 @@ Future<PatientResponsePayload> _createPatientJohnDoe(
   var payload = CreatePatientRequestPayload(
     name: 'John Doe',
     residentialAddress: 'Guesthouse',
+    gender: 'MALE',
+    patientCategory: 'OPD',
   );
   return await api.patients.create(payload);
 }
@@ -126,6 +135,9 @@ Future<List<PatientResponsePayload>> _createPatients(
 
   var payload = CreatePatientRequestPayload(
     name: name,
+    residentialAddress: 'Guesthouse',
+    gender: 'MALE',
+    patientCategory: 'OPD',
   );
   for (var i = 0; i < numberOfPatients; i++) {
     result.add(await api.patients.create(payload));
