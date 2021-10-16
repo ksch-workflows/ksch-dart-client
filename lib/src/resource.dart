@@ -49,7 +49,7 @@ abstract class _Resource {
   String get absolutePath {
     var result = '';
 
-    var ancestors = getAncestors();
+    var ancestors = getAncestors().reversed.toList();
     for (var i = 0; i < ancestors.length; i++) {
       var ancestor = ancestors[i];
       result += '${ancestor.path}/';
@@ -66,6 +66,6 @@ abstract class _Resource {
       result.add(parent!);
       result.addAll(parent!.getAncestors());
     }
-    return result.reversed.toList();
+    return result.toList();
   }
 }

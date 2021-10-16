@@ -55,11 +55,11 @@ class CreatePatientRequestPayload extends _BasePatientPayload {
     required String? gender,
     required String? patientCategory,
   }) : super(
-    name: name,
-    residentialAddress: residentialAddress,
-    gender: gender,
-    patientCategory: patientCategory,
-  );
+          name: name,
+          residentialAddress: residentialAddress,
+          gender: gender,
+          patientCategory: patientCategory,
+        );
 
   factory CreatePatientRequestPayload.fromJson(Map<String, dynamic> json) =>
       _$CreatePatientRequestPayloadFromJson(json);
@@ -83,11 +83,11 @@ class PatientResponsePayload extends _BasePatientPayload {
     required String? gender,
     required String? patientCategory,
   }) : super(
-    name: name,
-    residentialAddress: residentialAddress,
-    gender: gender,
-    patientCategory: patientCategory,
-  );
+          name: name,
+          residentialAddress: residentialAddress,
+          gender: gender,
+          patientCategory: patientCategory,
+        );
 
   factory PatientResponsePayload.fromJson(Map<String, dynamic> json) =>
       _$PatientResponsePayloadFromJson(json);

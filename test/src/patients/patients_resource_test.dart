@@ -40,7 +40,7 @@ void main() {
   test('should get patient', () async {
     var createdPatientId = (await api.patients.create()).id;
 
-    var result = await api.patients(createdPatientId).get();
+    var result = await api.patients.call(createdPatientId).get();
 
     expect(result.id, equals(createdPatientId));
   });
