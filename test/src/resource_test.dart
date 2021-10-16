@@ -3,69 +3,70 @@ import 'package:ksch_dart_client/src/resource.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('Should determine anchestors of root resource', () {
-    var result = RootResource().getAncestors();
-    expect(result.length, equals(0));
-  });
+  test('Should determine absolute path of nested identity resources', () {
+    var patientsResource = MockPatientsResource();
+    var patientResource = MockPatientResource(
+      id: '1',
+      parent: patientsResource,
+    );
+    var visitsResource = MockVisitsResource(parent: patientResource);
+    var visitResource = MockVisitResource(
+      id: '2',
+      parent: visitsResource,
+    );
 
-  test('Should determine anchestors of nested resources', () {
-    var rootResource = RootResource();
-    var subResource = SubResource(rootResource);
+    var result = visitResource.absolutePath;
 
-    var result = subResource.getAncestors();
-
-    expect(result.length, equals(1));
-  });
-
-  test('Should determine anchestors of double nested resources', () {
-    var rootResource = RootResource();
-    var subResource = SubResource(rootResource);
-    var subSubResource = SubSubResource(subResource);
-
-    var result = subSubResource.getAncestors();
-
-    expect(result.length, equals(2));
-    expect(result[0].runtimeType, equals(RootResource));
-    expect(result[1].runtimeType, equals(SubResource));
+    expect(result, equals('patients/1/visits/2'));
   });
 }
 
-class RootResource extends CollectionResource {
+class MockPatientsResource extends CollectionResource {
   @override
   CollectionResource? get parent => null;
 
   @override
-  String get path => 'root';
+  String get path => 'patients';
 
   @override
   KschApi get api => throw UnimplementedError();
 }
 
-class SubResource extends CollectionResource {
-  final CollectionResource _parent;
-
-  SubResource(this._parent);
-
-  @override
-  CollectionResource? get parent => _parent;
-
-  @override
-  String get path => 'sub-resource';
+class MockPatientResource extends IdentityResource {
+  MockPatientResource({
+    required String id,
+    required CollectionResource parent,
+  }) : super(
+          id: id,
+          parent: parent,
+        );
 
   @override
   KschApi get api => throw UnimplementedError();
 }
 
-class SubSubResource extends CollectionResource {
-  final CollectionResource _parent;
-
-  SubSubResource(this._parent);
+class MockVisitsResource extends CollectionResource {
+  MockVisitsResource({
+    required MockPatientResource parent,
+  }) : super(
+          parent: parent,
+        );
 
   @override
-  CollectionResource? get parent => _parent;
+  KschApi get api => throw UnimplementedError();
 
   @override
-  String get path => 'sub-sub-resource';
+  String get path => 'visits';
+}
+
+class MockVisitResource extends IdentityResource {
+  MockVisitResource({
+    required String id,
+    required CollectionResource parent,
+  }) : super(
+          id: id,
+          parent: parent,
+        );
 
   @override
   KschApi get api => throw UnimplementedError();

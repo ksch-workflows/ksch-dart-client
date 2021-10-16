@@ -23,4 +23,16 @@ void main() {
     expect(visit.type, equals(VisitType.OPD));
     expect(visit.timeStart.difference(DateTime.now()).inMinutes, equals(0));
   });
+
+  test('Should get visit', () async {
+    var patient = await api.patients.create();
+    var visit =
+        await api.patients.call(patient.id).visits.startVisit(VisitType.OPD);
+
+    var result =
+        await api.patients.call(patient.id).visits.call(visit.id).get();
+
+    expect(result.id, equals(visit.id));
+    expect(result.type, equals(visit.type));
+  });
 }

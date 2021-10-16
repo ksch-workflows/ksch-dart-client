@@ -6,20 +6,20 @@ import 'address/resource.dart';
 import 'payload.dart';
 import 'visits/resource.dart';
 
-class PatientCollectionResource extends CollectionResource {
+class PatientsResource extends CollectionResource {
   final KschApi api;
 
-  PatientCollectionResource({required this.api});
-
-  PatientResource call(String id) {
-    return PatientResource(api: api, id: id, parent: this);
-  }
+  PatientsResource({required this.api});
 
   @override
   String get path => 'patients';
 
   @override
   CollectionResource? get parent => null;
+
+  PatientResource call(String id) {
+    return PatientResource(api: api, id: id, parent: this);
+  }
 
   Future<PatientResponsePayload> create(
       [CreatePatientRequestPayload? patient]) async {

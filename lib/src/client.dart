@@ -7,10 +7,10 @@ import 'patients/resource.dart';
 class KschApi {
   String baseUrl;
 
-  late final PatientCollectionResource patients;
+  late final PatientsResource patients;
 
   KschApi(this.baseUrl) {
-    patients = PatientCollectionResource(api: this);
+    patients = PatientsResource(api: this);
   }
 
   Future<http.Response> get(String resource) async {
