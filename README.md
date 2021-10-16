@@ -33,6 +33,9 @@ dart test
 ```
 dart format .
 dart analyze
+
+# https://github.com/dart-lang/pana
+pana .
 ```
 
 ## License
