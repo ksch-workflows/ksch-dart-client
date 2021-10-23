@@ -119,9 +119,13 @@ class Links {
   @JsonKey(name: 'start-visit')
   final Link? startVisit;
 
+  @JsonKey(name: 'current-visit')
+  final Link? currentVisit;
+
   Links({
     required this.self,
     this.startVisit,
+    this.currentVisit,
   });
 
   factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);

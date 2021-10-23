@@ -1,4 +1,5 @@
 import 'package:ksch_dart_client/core.dart';
+import 'package:ksch_dart_client/resources.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -102,6 +103,19 @@ void main() {
     expect(lastPage.page.number, greaterThan(0));
     expect(lastPage.page.number, equals(firstPage.page.totalPages - 1));
   });
+
+  test('Should access current visit via link on patient', () async {
+    var patient = await api.patients.create();
+    expect(patient.links.startVisit, isNotNull);
+    expect(patient.links.currentVisit, isNull);
+
+    await api.patients(patient.id).visits.startVisit(VisitType.IPD);
+
+    patient = await api.patients(patient.id).get();
+    expect(patient.links.startVisit, isNull);
+    expect(patient.links.currentVisit, isNotNull);
+  });
+
 }
 
 Future<PatientResponsePayload> _createPatient(

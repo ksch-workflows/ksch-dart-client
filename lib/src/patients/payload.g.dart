@@ -104,10 +104,14 @@ Links _$LinksFromJson(Map<String, dynamic> json) {
     startVisit: json['start-visit'] == null
         ? null
         : Link.fromJson(json['start-visit'] as Map<String, dynamic>),
+    currentVisit: json['current-visit'] == null
+        ? null
+        : Link.fromJson(json['current-visit'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$LinksToJson(Links instance) => <String, dynamic>{
       'self': instance.self.toJson(),
       'start-visit': instance.startVisit?.toJson(),
+      'current-visit': instance.currentVisit?.toJson(),
     };
