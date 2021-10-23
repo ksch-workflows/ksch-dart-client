@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:ksch_dart_client/core.dart';
+import 'package:ksch_dart_client/resources.dart';
 
 import '../hateoas.dart';
 import '../pagination.dart';
@@ -117,7 +119,7 @@ class Links {
   final Link self;
 
   @JsonKey(name: 'start-visit')
-  final Link? startVisit;
+  final StartVisitLink? startVisit;
 
   @JsonKey(name: 'current-visit')
   final Link? currentVisit;
@@ -131,4 +133,32 @@ class Links {
   factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
 
   Map<String, dynamic> toJson() => _$LinksToJson(this);
+}
+
+@JsonSerializable()
+class StartVisitLink implements Link {
+  final String href;
+
+  StartVisitLink({required this.href});
+
+  factory StartVisitLink.fromJson(Map<String, dynamic> json) => _$StartVisitLinkFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StartVisitLinkToJson(this);
+
+  Future<VisitResponsePayload> call(KschApi api, VisitType visitType) {
+    return api.patients(_patientId).visits.startVisit(visitType);
+  }
+
+  String get _patientId {
+    var regExp = RegExp(r'http.*/api/patients/([A-Fa-f\-0-9]+)/visits');
+    var match = regExp.firstMatch(href);
+    if (match == null) {
+      throw 'Could not parse patient id from link "$href".';
+    }
+    var patientId = match.group(1);
+    if (patientId == null) {
+      throw 'Could not parse patient id from link "$href".';
+    }
+    return patientId;
+  }
 }

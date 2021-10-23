@@ -109,7 +109,7 @@ void main() {
     expect(patient.links.startVisit, isNotNull);
     expect(patient.links.currentVisit, isNull);
 
-    await api.patients(patient.id).visits.startVisit(VisitType.IPD);
+    await patient.links.startVisit!(api, VisitType.IPD);
 
     patient = await api.patients(patient.id).get();
     expect(patient.links.startVisit, isNull);
