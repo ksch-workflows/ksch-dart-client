@@ -146,10 +146,10 @@ class StartVisitLink implements Link {
   Map<String, dynamic> toJson() => _$StartVisitLinkToJson(this);
 
   Future<VisitResponsePayload> call(KschApi api, VisitType visitType) {
-    return api.patients(_patientId).visits.startVisit(visitType);
+    return api.patients(patientId).visits.startVisit(visitType);
   }
 
-  String get _patientId {
+  String get patientId {
     var regExp = RegExp(r'http.*/api/patients/([A-Fa-f\-0-9]+)/visits');
     var match = regExp.firstMatch(href);
     if (match == null) {
