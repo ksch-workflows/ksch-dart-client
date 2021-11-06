@@ -5,6 +5,7 @@ part 'payload.g.dart';
 enum VisitType {
   OPD,
   IPD,
+  EMERGENCY,
   PHYSIO_THERAPY,
 }
 
