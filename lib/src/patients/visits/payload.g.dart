@@ -46,6 +46,7 @@ K _$enumDecode<K, V>(
 const _$VisitTypeEnumMap = {
   VisitType.OPD: 'OPD',
   VisitType.IPD: 'IPD',
+  VisitType.EMERGENCY: 'EMERGENCY',
   VisitType.PHYSIO_THERAPY: 'PHYSIO_THERAPY',
 };
 
