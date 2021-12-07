@@ -114,8 +114,11 @@ void main() {
     patient = await api.patients(patient.id).get();
     expect(patient.links.startVisit, isNull);
     expect(patient.links.currentVisit, isNotNull);
-  });
+    expect(patient.links.currentVisit!.visitId, isNotEmpty);
 
+    var visit = await patient.links.currentVisit!.get(api);
+    expect(visit.id, isNotEmpty);
+  });
 }
 
 Future<PatientResponsePayload> _createPatient(

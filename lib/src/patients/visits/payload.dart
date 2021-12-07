@@ -9,6 +9,22 @@ enum VisitType {
   PHYSIO_THERAPY,
 }
 
+extension Name on String {
+  static final Map<VisitType, String> _names = {
+    VisitType.OPD: 'OPD',
+    VisitType.IPD: 'IPD',
+    VisitType.EMERGENCY: 'Emergency',
+    VisitType.PHYSIO_THERAPY: 'Physio therapy',
+  };
+
+  static String of(VisitType key) {
+    if (_names.keys.length != VisitType.values.length) {
+      throw 'Visit type name configuration is incomplete';
+    }
+    return _names[key]!;
+  }
+}
+
 @JsonSerializable()
 class StartVisitPayload {
   final VisitType type;
