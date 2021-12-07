@@ -1,8 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ksch_dart_client/core.dart';
-import 'package:ksch_dart_client/resources.dart';
 
-import '../hateoas.dart';
+import '../../core.dart';
+import '../../resources.dart';
 import '../pagination.dart';
 
 part 'payload.g.dart';
@@ -147,7 +146,8 @@ class VisitLink implements Link {
   Map<String, dynamic> toJson() => _$VisitLinkToJson(this);
 
   String get patientId {
-    var regExp = RegExp(r'http.*/api/patients/([A-Fa-f\-0-9]+)/visits/([A-Fa-f\-0-9]+)');
+    var regExp =
+        RegExp(r'http.*/api/patients/([A-Fa-f\-0-9]+)/visits/([A-Fa-f\-0-9]+)');
     var match = regExp.firstMatch(href);
     if (match == null) {
       throw 'Could not parse patient id from link "$href".';
@@ -160,7 +160,8 @@ class VisitLink implements Link {
   }
 
   String get visitId {
-    var regExp = RegExp(r'http.*/api/patients/([A-Fa-f\-0-9]+)/visits/([A-Fa-f\-0-9]+)');
+    var regExp =
+        RegExp(r'http.*/api/patients/([A-Fa-f\-0-9]+)/visits/([A-Fa-f\-0-9]+)');
     var match = regExp.firstMatch(href);
     if (match == null) {
       throw 'Could not parse visit id from link "$href".';
