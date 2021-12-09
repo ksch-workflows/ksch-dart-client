@@ -2,14 +2,17 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'actuator/resource.dart';
 import 'patients/resource.dart';
 
 class KschApi {
   String baseUrl;
 
+  late final ActuatorResource actuator;
   late final PatientsResource patients;
 
   KschApi(this.baseUrl) {
+    actuator = ActuatorResource(api: this);
     patients = PatientsResource(api: this);
   }
 

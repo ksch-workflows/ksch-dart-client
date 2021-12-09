@@ -5,7 +5,7 @@ import '../../resource.dart';
 import '../resource.dart';
 import 'payload.dart';
 
-class ResidentialAddressResource extends SubResource {
+class ResidentialAddressResource extends Resource {
   final KschApi api;
 
   ResidentialAddressResource({
