@@ -19,10 +19,10 @@ abstract class IdentityResource extends _Resource {
   String get path => _id;
 }
 
-/// Base class for an anonymous sub-resource, i.e. a sub-resource without
+/// Base class for a generic resource, e.g. a sub-resource without
 /// a specific identifier.
-abstract class SubResource extends _Resource {
-  SubResource({_Resource? parent}) : super(parent: parent);
+abstract class Resource extends _Resource {
+  Resource({_Resource? parent}) : super(parent: parent);
 }
 
 /// Representation of a REST resource.
