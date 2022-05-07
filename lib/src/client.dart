@@ -7,11 +7,12 @@ import 'patients/resource.dart';
 
 class KschApi {
   String baseUrl;
+  String? accessToken;
 
   late final ActuatorResource actuator;
   late final PatientsResource patients;
 
-  KschApi(this.baseUrl) {
+  KschApi(this.baseUrl, {this.accessToken}) {
     actuator = ActuatorResource(api: this);
     patients = PatientsResource(api: this);
   }
@@ -22,7 +23,7 @@ class KschApi {
     if (uri == null) {
       throw 'Could not parse URI from $absolutePath.';
     }
-    var response = await http.get(uri);
+    var response = await http.get(uri, headers: commonHeaders);
     _checkNoErrorResponse(response);
     return response;
   }
@@ -39,6 +40,7 @@ class KschApi {
     var headers = <String, String>{
       if (body != null) 'Content-Type': 'application/json',
     };
+    headers.addAll(commonHeaders);
     late http.Response response;
     if (body != null) {
       response = await http.post(uri, body: jsonEncode(body), headers: headers);
@@ -47,6 +49,14 @@ class KschApi {
     }
     _checkNoErrorResponse(response);
     return response;
+  }
+
+  Map<String, String> get commonHeaders {
+    var result = <String, String>{};
+    if (accessToken != null) {
+      result['Authorization'] = 'Bearer $accessToken';
+    }
+    return result;
   }
 }
 
@@ -67,7 +77,12 @@ class HttpException {
 
   @override
   String toString() {
-    return "Request failed with status code '$statusCode'."
-        'Details: $responseBody';
+    var msg = "Request failed with status code '$statusCode'.";
+    if (responseBody.isNotEmpty) {
+      msg += ' Details: $responseBody.';
+    } else {
+      msg += ' No response payload.';
+    }
+    return msg;
   }
 }

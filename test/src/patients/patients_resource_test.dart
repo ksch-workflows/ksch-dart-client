@@ -2,11 +2,13 @@ import 'package:ksch_dart_client/core.dart';
 import 'package:ksch_dart_client/resources.dart';
 import 'package:test/test.dart';
 
+import '../authentication.dart';
+
 void main() {
   late KschApi api;
 
   setUp(() {
-    api = KschApi('http://localhost:8080');
+    api = KschApi('http://localhost:8080', accessToken: mockAccessToken);
   });
 
   test('Should create patient without payload', () async {
